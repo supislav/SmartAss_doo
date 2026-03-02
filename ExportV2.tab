@@ -18,7 +18,7 @@ BEGIN_ASM_DESCR
 		CREATE_DIRECTORY asmExportDirectory
 
 		!---maybe also other directories? What could we possibly split away from those two?
-		
+
 		!Initialize BOM arrays
 		DECLARE_ARRAY componentBomLevelArray
 		DECLARE_ARRAY componentM3Array
@@ -32,8 +32,33 @@ BEGIN_ASM_DESCR
 		DECLARE_ARRAY componentGabariteYArray
 		DECLARE_ARRAY componentCutLengthArray
 
+		!Reference to main Assembly
+		!Components are PARTS & ASSEMBLIES
+		SEARCH_MDL_REFS THIS COMPONENT "*" mainAssyComponentsArray
 
+		!BoM Top Index Declaration
+		DECLARE_VARIABLE INTEGER topIndex
+		topIndex = 1
 
+		!For Loop Processing of Components
+		FOR eachComponent REF ARRAY mainAssyComponentsArray
+			DECLARE_VARIABLE STRING bomLevelString
+			bomLevelString = itos(topIndex)
+
+			!Process the Component (could be PRT or ASM)
+			!Call External?
+
+			topIndex = topIndex + 1
+		END_FOR
+
+		!Create Excel BOM
+		!Call External?
+
+		PRINT "======================================"
+		PRINT "Export of % is complete!" modelName
+		PRINT "Documentation is stored at %" selectedPath
+		PRINT "======================================"
+		
 		
 	ELSE_IF modelExtension == "prt" || modelExtension == "drw"
 		PRINT "This is not an assembly file. Please select an assembly file to process."
