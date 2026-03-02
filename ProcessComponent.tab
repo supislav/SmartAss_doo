@@ -1,0 +1,4 @@
+BEGIN_ASM_DESCR
+	GET_MDL_EXTENSION componentRef modelExtension
+
+END_ASM_DESCR

@@ -1,0 +1,13 @@
+BEGIN_ASM_DESCR
+	GET_MDL_NAME THIS modelName
+	GET_MDL_EXTENSION THIS modelExtension
+
+	IF modelExtension == "asm"
+
+
+
+		
+	ELSE_IF modelExtension == "prt" || modelExtension == "drw"
+		PRINT "This is not an assembly file. Please select an assembly file to process."
+	END_IF
+END_ASM_DESCR
