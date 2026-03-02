@@ -1,4 +1,34 @@
 BEGIN_ASM_DESCR
-	GET_MDL_EXTENSION componentRef modelExtension
+	!Get component Reference
+    GET_MDL_NAME componentRef componentName
+	!Get component Extension
+    GET_MDL_EXTENSION componentRef modelExtension
+
+	PRINT "Processing component: % (type: %)" componentName modelExtension
+
+	IF modelExtension == "asm"
+        !Check if assembly has FINAL_LEVEL parameter set to TRUE, if so then skip processing this assembly and its components
+		DECLARE_VARIABLE BOOL isFinalLevel
+		BEGIN_CATCH_ERROR
+			SEARCH_MDL_PARAM componentRef "FINAL_LEVEL" finalLevel
+			IF NOT PARAM_VALID finalLevel
+				finalLevel = 0
+			END_IF
+		END_CATCH_ERROR
+
+		IF finalLevel <> 1
+			! Recursively process sub-components
+			SEARCH_MDL_REFS componentRef COMPONENT "*" subComponentArray
+		END_IF
+
+
+
+
+    ELSE_IF modelExtension == "prt"
+        PRINT "  -> This is a PART"
+    END_IF
 
 END_ASM_DESCR
+
+
+SEARCH_MDL_REFS partRef PART "*" partArray

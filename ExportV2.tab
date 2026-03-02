@@ -6,16 +6,19 @@ BEGIN_ASM_DESCR
 	IF modelExtension == "asm"
 		!Get Export Directory ---In the future could be MO of AHU
 		CHOOSE_PATH "." selectedPath
+		!---log in the file with timestamp
 
 		!Declare & Create directory to export parts into (pdf, dxf, step)
 		DECLARE_VARIABLE STRING prtExportDirectory
 		prtExportDirectory = selectedPath + "\Parts"
 		CREATE_DIRECTORY prtExportDirectory
+		!---log in the file with timestamp
 
 		!Declare & Create directory to export assemblies into (pdf, BOM xlsx, pvz) ---pvz maybe? We have to decide
 		DECLARE_VARIABLE STRING asmExportDirectory
 		asmExportDirectory = selectedPath + "\Assemblies"
 		CREATE_DIRECTORY asmExportDirectory
+		!---log in the file with timestamp
 
 		!---maybe also other directories? What could we possibly split away from those two?
 
