@@ -10,4 +10,6 @@ BEGIN_ASM_DESCR
 	ELSE_IF modelExtension == "prt" || modelExtension == "drw"
 		PRINT "This is not an assembly file. Please select an assembly file to process."
 	END_IF
+
+	Test
 END_ASM_DESCR
